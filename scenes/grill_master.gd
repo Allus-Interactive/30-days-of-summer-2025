@@ -4,6 +4,7 @@ extends Node2D
 const FOOD_TYPES =[
 	preload("res://resources/food resources/burger.tres"),
 	preload("res://resources/food resources/sausage.tres"),
+	preload("res://resources/food resources/shish-kebab.tres"),
 ]
 
 

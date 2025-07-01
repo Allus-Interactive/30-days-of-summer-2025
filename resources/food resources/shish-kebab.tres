@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://b6fwi5nt4l18v"]
+
+[ext_resource type="Script" uid="uid://wen53ih1kr00" path="res://resources/food_data.gd" id="1_smf76"]
+[ext_resource type="Texture2D" uid="uid://c7enu0a2ttl85" path="res://assets/food/shish kebab/shish_kebab_burnt.png" id="2_smf76"]
+[ext_resource type="Texture2D" uid="uid://kb7we3q6qoyl" path="res://assets/food/shish kebab/shish_kebab_cooked.png" id="3_0a1rq"]
+[ext_resource type="Texture2D" uid="uid://c3k752hv4guwc" path="res://assets/food/shish kebab/shish_kebab_raw.png" id="4_daf40"]
+
+[resource]
+script = ExtResource("1_smf76")
+food_name = "Shish Kebab"
+texture_raw = ExtResource("4_daf40")
+texture_cooked = ExtResource("3_0a1rq")
+texture_burned = ExtResource("2_smf76")
+cooking_time = 1.5
+burned_time = 3.0
+metadata/_custom_type_script = "uid://wen53ih1kr00"
