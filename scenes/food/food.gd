@@ -14,11 +14,12 @@ var flipped = false
 # @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var cooking_timer: Timer = $CookingTimer
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
+@onready var sizzle_sfx: AudioStreamPlayer2D = $SizzleSFX
 
 
 func _ready() -> void:
 	set_food_to_raw()
+	# sizzle_sfx.play()
 
 
 func _on_cooking_timer_timeout() -> void:

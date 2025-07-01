@@ -15,6 +15,7 @@ const FOOD_TYPES =[
 @onready var timer_label: Label = $CanvasLayer/TimerLabel
 @onready var food_spawn_timer: Timer = $GrillArea/FoodSpawnTimer
 @onready var level_timer: Timer = $LevelTimer
+@onready var sizzle_sfx: AudioStreamPlayer2D = $SizzleSFX
 
 
 var food_scene = preload("res://scenes/food/food.tscn")
@@ -44,6 +45,9 @@ func on_timer_finished():
 
 
 func _on_food_spawn_timer_timeout() -> void:
+	if not sizzle_sfx.playing:
+		sizzle_sfx.play()
+	
 	var available_slots = grill_slots.filter(func(slot):
 		return not slot.occupied
 	)

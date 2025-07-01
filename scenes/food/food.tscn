@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://5h0o701ctdvj"]
+[gd_scene load_steps=15 format=3 uid="uid://5h0o701ctdvj"]
 
 [ext_resource type="Script" uid="uid://bomoi37rnhk3x" path="res://scenes/food/food.gd" id="1_lgl0r"]
 [ext_resource type="Texture2D" uid="uid://d304avqfvx4u1" path="res://assets/food/burger/burger_cooked.png" id="2_g14pc"]
 [ext_resource type="Texture2D" uid="uid://3ko0lakwcno8" path="res://assets/food/burger/burger_burnt.png" id="3_e1od1"]
 [ext_resource type="Texture2D" uid="uid://c37w4j1esa0s7" path="res://assets/food/burger/burger_raw.png" id="4_s8a4o"]
+[ext_resource type="AudioStream" uid="uid://b15rim1aouul4" path="res://assets/sfx/sizzle.mp3" id="5_icjja"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnnhp"]
 radius = 39.0
@@ -189,5 +190,9 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.9, 0.9)
+
+[node name="SizzleSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_icjja")
+volume_db = -10.0
 
 [connection signal="timeout" from="CookingTimer" to="." method="_on_cooking_timer_timeout"]

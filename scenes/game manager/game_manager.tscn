@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://2o0t660ui2rf"]
+[gd_scene load_steps=3 format=3 uid="uid://2o0t660ui2rf"]
 
 [ext_resource type="Script" uid="uid://vgu8mekefsd7" path="res://scenes/game manager/game_manager.gd" id="1_4su5l"]
+[ext_resource type="AudioStream" uid="uid://ddte8k1xaqv8u" path="res://assets/music/beach_vibe_saavane.mp3" id="2_btqu3"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_4su5l")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_btqu3")
+volume_db = -10.0
