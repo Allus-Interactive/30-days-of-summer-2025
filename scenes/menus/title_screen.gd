@@ -8,6 +8,8 @@ extends Control
 
 
 func _ready() -> void:
+	if GameManager.high_score <= 0:
+		high_score_label.visible = false
 	GameManager.high_score = GameManager.load_high_score()
 	high_score_label.text = "High Score: %d" % GameManager.high_score
 
