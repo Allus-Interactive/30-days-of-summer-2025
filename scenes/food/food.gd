@@ -6,7 +6,7 @@ enum State { RAW, COOKING, READY, BURNED }
 # var cook_time: float = randf_range(1.5, 3.0)
 # var burn_time: float = randf_range(3.25, 4.0)
 var current_state = State.RAW
-# var flipped = false
+var flipped = false
 
 @export var food_data: FoodData
 
@@ -18,10 +18,7 @@ var current_state = State.RAW
 
 
 func _ready() -> void:
-	cooking_timer.wait_time = food_data.cooking_time
-	cooking_timer.start()
-	# animated_sprite_2d.play("raw")
-	sprite_2d.texture = food_data.texture_raw
+	set_food_to_raw()
 
 
 func _on_cooking_timer_timeout() -> void:
@@ -42,6 +39,14 @@ func _on_cooking_timer_timeout() -> void:
 			pass
 
 
+func set_food_to_raw():
+	current_state = State.RAW
+	cooking_timer.wait_time = food_data.cooking_time
+	cooking_timer.start()
+	# animated_sprite_2d.play("raw")
+	sprite_2d.texture = food_data.texture_raw
+
+
 func remove_food():
 	var slot = get_meta("grill_slot")
 	if slot:
@@ -51,8 +56,13 @@ func remove_food():
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if current_state == State.READY:
-			remove_food()
-			get_tree().call_group("game", "add_score", 10)
+			if flipped:
+				remove_food()
+				get_tree().call_group("game", "add_score", 10)
+			else:
+				# play flip animation
+				flipped = true
+				set_food_to_raw()
 		elif current_state == State.BURNED:
 			remove_food()
 			get_tree().call_group("game", "add_score", -5)
