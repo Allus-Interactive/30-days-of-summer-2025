@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="Grill Master"
+config/version="1.0"
 run/main_scene="uid://1gnp2gl387aa"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://d0xtvhogs43fo"
+config/icon="uid://dmow51a2duoaw"
 
 [autoload]
 
