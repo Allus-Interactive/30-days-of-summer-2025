@@ -17,7 +17,7 @@ const FOOD_TYPES =[
 @onready var level_timer: Timer = $LevelTimer
 
 
-var food_scene = preload("res://scenes/Food/food.tscn")
+var food_scene = preload("res://scenes/food/food.tscn")
 var score = 0
 var time_remaining = 60
 
