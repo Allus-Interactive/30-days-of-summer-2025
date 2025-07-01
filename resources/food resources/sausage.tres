@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://yrun8wqaqq1v"]
+
+[ext_resource type="Script" uid="uid://wen53ih1kr00" path="res://resources/food_data.gd" id="1_ov351"]
+[ext_resource type="Texture2D" uid="uid://du5an4aosfwcg" path="res://assets/food/sausage/sausage_burnt.png" id="2_ap12w"]
+[ext_resource type="Texture2D" uid="uid://cp8v8li15ikfx" path="res://assets/food/sausage/sausage_cooked.png" id="3_mmdj0"]
+[ext_resource type="Texture2D" uid="uid://b0xd4iwoll7s0" path="res://assets/food/sausage/sausage_raw.png" id="4_8bnth"]
+
+[resource]
+script = ExtResource("1_ov351")
+food_name = "Sausage"
+texture_raw = ExtResource("4_8bnth")
+texture_cooked = ExtResource("3_mmdj0")
+texture_burned = ExtResource("2_ap12w")
+cooking_time = 2.0
+burned_time = 4.0
+metadata/_custom_type_script = "uid://wen53ih1kr00"

@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2pb2s3uynfy4"]
+
+[ext_resource type="Script" uid="uid://d0pxnpnqcq5m8" path="res://scenes/grill_master.gd" id="1_d78sw"]
+[ext_resource type="Texture2D" uid="uid://cbml52o5ut3n" path="res://assets/background.png" id="2_5chkt"]
+[ext_resource type="Script" uid="uid://d3sh38pf2ng6e" path="res://scenes/grill_slot.gd" id="3_5chkt"]
+[ext_resource type="Texture2D" uid="uid://cymnmnks1sxto" path="res://assets/flame/flame_2.png" id="3_u0tv4"]
+[ext_resource type="Texture2D" uid="uid://eo7xll3s1jd1" path="res://assets/flame/flame_1.png" id="4_of3aw"]
+[ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="6_u0tv4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jr27"]
+atlas = ExtResource("3_u0tv4")
+region = Rect2(0, 0, 295, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h01v4"]
+atlas = ExtResource("4_of3aw")
+region = Rect2(0, 0, 295, 236)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_of3aw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jr27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h01v4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="GrillMaster" type="Node2D"]
+script = ExtResource("1_d78sw")
+next_scene = "res://scenes/menus/title_screen.tscn"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(480, 270)
+texture = ExtResource("2_5chkt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(735, 160)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_of3aw")
+autoplay = "default"
+
+[node name="GrillArea" type="Node2D" parent="."]
+position = Vector2(480, 270)
+
+[node name="GrillSlots" type="Node2D" parent="GrillArea"]
+
+[node name="Slot 1" type="Marker2D" parent="GrillArea/GrillSlots"]
+position = Vector2(-300, 0)
+script = ExtResource("3_5chkt")
+
+[node name="Slot 2" type="Marker2D" parent="GrillArea/GrillSlots"]
+position = Vector2(-150, 0)
+script = ExtResource("3_5chkt")
+
+[node name="Slot 3" type="Marker2D" parent="GrillArea/GrillSlots"]
+script = ExtResource("3_5chkt")
+
+[node name="Slot 4" type="Marker2D" parent="GrillArea/GrillSlots"]
+position = Vector2(150, 0)
+script = ExtResource("3_5chkt")
+
+[node name="Slot 5" type="Marker2D" parent="GrillArea/GrillSlots"]
+position = Vector2(300, 0)
+script = ExtResource("3_5chkt")
+
+[node name="FoodSpawnTimer" type="Timer" parent="GrillArea"]
+wait_time = 2.5
+autostart = true
+
+[node name="LevelTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_right = 200.0
+offset_bottom = 70.0
+theme = ExtResource("6_u0tv4")
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+offset_left = 760.0
+offset_right = 960.0
+offset_bottom = 70.0
+theme = ExtResource("6_u0tv4")
+text = "Time: 60"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="GrillArea/FoodSpawnTimer" to="." method="_on_food_spawn_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

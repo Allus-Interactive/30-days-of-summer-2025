@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://1gnp2gl387aa"]
+
+[ext_resource type="Script" uid="uid://ce4v211ythoe3" path="res://scenes/menus/title_screen.gd" id="1_n17qi"]
+[ext_resource type="Texture2D" uid="uid://cbn6omwkhbwwm" path="res://assets/title_screen.png" id="2_ptv5j"]
+[ext_resource type="Texture2D" uid="uid://cymnmnks1sxto" path="res://assets/flame/flame_2.png" id="3_ptv5j"]
+[ext_resource type="Texture2D" uid="uid://eo7xll3s1jd1" path="res://assets/flame/flame_1.png" id="4_jhqb3"]
+[ext_resource type="Texture2D" uid="uid://d304avqfvx4u1" path="res://assets/food/burger/burger_cooked.png" id="5_ssxho"]
+[ext_resource type="Texture2D" uid="uid://cp8v8li15ikfx" path="res://assets/food/sausage/sausage_cooked.png" id="6_30q4t"]
+[ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_jhqb3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugfu2"]
+atlas = ExtResource("3_ptv5j")
+region = Rect2(0, 0, 295, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssxho"]
+atlas = ExtResource("4_jhqb3")
+region = Rect2(0, 0, 295, 236)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_og6oq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugfu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssxho")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n17qi")
+next_scene = "res://scenes/grill_master.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(480, 270)
+texture = ExtResource("2_ptv5j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+position = Vector2(255, -110)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_og6oq")
+autoplay = "default"
+frame_progress = 0.0727496
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-300, 0)
+texture = ExtResource("5_ssxho")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-150, 0)
+texture = ExtResource("6_30q4t")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(300, 0)
+texture = ExtResource("5_ssxho")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HighScoreLabel" type="Label" parent="CanvasLayer"]
+offset_top = 480.0
+offset_right = 960.0
+offset_bottom = 539.0
+theme = ExtResource("7_jhqb3")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "High Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1

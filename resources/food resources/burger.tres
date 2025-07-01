@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://dn47di17j73bx"]
+
+[ext_resource type="Script" uid="uid://wen53ih1kr00" path="res://resources/food_data.gd" id="1_bdbf0"]
+[ext_resource type="Texture2D" uid="uid://3ko0lakwcno8" path="res://assets/food/burger/burger_burnt.png" id="2_rcvaj"]
+[ext_resource type="Texture2D" uid="uid://d304avqfvx4u1" path="res://assets/food/burger/burger_cooked.png" id="3_kwyel"]
+[ext_resource type="Texture2D" uid="uid://c37w4j1esa0s7" path="res://assets/food/burger/burger_raw.png" id="4_lg6k7"]
+
+[resource]
+script = ExtResource("1_bdbf0")
+food_name = "Burger"
+texture_raw = ExtResource("4_lg6k7")
+texture_cooked = ExtResource("3_kwyel")
+texture_burned = ExtResource("2_rcvaj")
+cooking_time = 3.0
+burned_time = 5.0
+metadata/_custom_type_script = "uid://wen53ih1kr00"
