@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2pb2s3uynfy4"]
+[gd_scene load_steps=13 format=3 uid="uid://d2pb2s3uynfy4"]
 
 [ext_resource type="Script" uid="uid://d0pxnpnqcq5m8" path="res://scenes/grill_master.gd" id="1_d78sw"]
 [ext_resource type="Texture2D" uid="uid://cbml52o5ut3n" path="res://assets/background.png" id="2_5chkt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="6_u0tv4"]
 [ext_resource type="AudioStream" uid="uid://dfu527utrhcma" path="res://assets/sfx/sizzle_loop.mp3" id="7_of3aw"]
 [ext_resource type="PackedScene" uid="uid://bdhods3l4na3p" path="res://scenes/player/player.tscn" id="8_5jr27"]
+[ext_resource type="PackedScene" uid="uid://jd1pq3pnjugm" path="res://scenes/menus/pause_screen.tscn" id="9_h01v4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5jr27"]
 atlas = ExtResource("3_u0tv4")
@@ -101,6 +102,8 @@ volume_db = -20.0
 
 [node name="Player" parent="." instance=ExtResource("8_5jr27")]
 position = Vector2(480, 400)
+
+[node name="Pause Screen" parent="." instance=ExtResource("9_h01v4")]
 
 [connection signal="timeout" from="GrillArea/FoodSpawnTimer" to="." method="_on_food_spawn_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
