@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdhods3l4na3p"]
+
+[ext_resource type="Script" uid="uid://b56fr5kchjdjp" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://dredp1q5vi4mb" path="res://assets/player/spatula.png" id="2_dovo2"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_dovo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 100)
+texture = ExtResource("2_dovo2")

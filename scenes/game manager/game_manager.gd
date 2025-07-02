@@ -2,6 +2,7 @@ extends Node2D
 
 
 var high_score: int = 0
+signal flip_the_food(current_position: float)
 
 
 func save_high_score(score: int) -> void:
