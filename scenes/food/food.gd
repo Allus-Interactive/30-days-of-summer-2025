@@ -59,13 +59,28 @@ func on_flip_food(player_position: float) -> void:
 				player_anim_timer.start()
 				food_anim_timer.start()
 			else:
-				# TODO: implement and play flip animation
+				flip_food_sprite()
+				await get_tree().create_timer(0.2).timeout
 				flipped = true
 				set_food_to_raw()
 		elif current_state == State.BURNED:
 			cooking_timer.stop()
 			player_anim_timer.start()
 			food_anim_timer.start()
+
+
+func flip_food_sprite() -> void:
+	var tween = create_tween()
+	
+	# Scale X to 0 (disappear)
+	tween.tween_property(sprite_2d, "scale:x", 0.0, 0.2)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_IN)
+	
+	# Scale X back to 1 (reappear)
+	tween.tween_property(sprite_2d, "scale:x", 1.0, 0.2)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_OUT)
 
 
 func _on_player_anim_timer_timeout() -> void:
