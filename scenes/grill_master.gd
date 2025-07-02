@@ -62,7 +62,6 @@ func _on_food_spawn_timer_timeout() -> void:
 	var slot = available_slots.pick_random()
 	food.global_position = slot.global_position
 	add_child(food)
-	food.food_data
 	if food_spawn_timer.wait_time > 1.0:
 		food_spawn_timer.wait_time -= 0.1
 	
