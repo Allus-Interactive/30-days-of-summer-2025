@@ -195,4 +195,12 @@ scale = Vector2(0.9, 0.9)
 stream = ExtResource("5_icjja")
 volume_db = -10.0
 
+[node name="PlayerAnimTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="FoodAnimTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="timeout" from="CookingTimer" to="." method="_on_cooking_timer_timeout"]
+[connection signal="timeout" from="PlayerAnimTimer" to="." method="_on_player_anim_timer_timeout"]
+[connection signal="timeout" from="FoodAnimTimer" to="." method="_on_food_anim_timer_timeout"]

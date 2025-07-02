@@ -10,11 +10,14 @@ var flipped = false
 
 @export var food_data: FoodData
 
+@onready var food: Area2D = $"."
 # @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 # @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var cooking_timer: Timer = $CookingTimer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var sizzle_sfx: AudioStreamPlayer2D = $SizzleSFX
+@onready var player_anim_timer: Timer = $PlayerAnimTimer
+@onready var food_anim_timer: Timer = $FoodAnimTimer
 
 
 func _ready() -> void:
@@ -60,12 +63,30 @@ func on_flip_food(player_position: float) -> void:
 	if global_position.x == player_position:
 		if current_state == State.READY:
 			if flipped:
-				remove_food()
-				get_tree().call_group("game", "add_score", 10)
+				cooking_timer.stop()
+				player_anim_timer.start()
+				food_anim_timer.start()
 			else:
 				# play flip animation
 				flipped = true
 				set_food_to_raw()
 		elif current_state == State.BURNED:
-			remove_food()
-			get_tree().call_group("game", "add_score", -5)
+			cooking_timer.stop()
+			player_anim_timer.start()
+			food_anim_timer.start()
+
+
+func _on_player_anim_timer_timeout() -> void:
+	print("player anim timer timeout")
+	var tween = create_tween()
+	tween.tween_property(food, "position", Vector2(global_position.x, 400), 0.25)
+
+
+func _on_food_anim_timer_timeout() -> void:
+	print("food anim timer timeout")
+	if current_state == State.READY:
+		remove_food()
+		get_tree().call_group("game", "add_score", 10)
+	elif current_state == State.BURNED:
+		remove_food()
+		get_tree().call_group("game", "add_score", -5)
