@@ -19,7 +19,7 @@ var flipped = false
 
 func _ready() -> void:
 	set_food_to_raw()
-	# sizzle_sfx.play()
+	sizzle_sfx.play()
 	GameManager.flip_the_food.connect(on_flip_food)
 
 
@@ -61,6 +61,7 @@ func on_flip_food(player_position: float) -> void:
 			else:
 				flip_food_sprite()
 				await get_tree().create_timer(0.2).timeout
+				sizzle_sfx.play()
 				flipped = true
 				set_food_to_raw()
 		elif current_state == State.BURNED:
@@ -84,13 +85,11 @@ func flip_food_sprite() -> void:
 
 
 func _on_player_anim_timer_timeout() -> void:
-	print("player anim timer timeout")
 	var tween = create_tween()
 	tween.tween_property(food, "position", Vector2(global_position.x, 400), 0.25)
 
 
 func _on_food_anim_timer_timeout() -> void:
-	print("food anim timer timeout")
 	if current_state == State.READY:
 		remove_food()
 		get_tree().call_group("game", "add_score", 10)
