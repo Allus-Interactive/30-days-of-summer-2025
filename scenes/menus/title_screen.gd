@@ -17,6 +17,6 @@ func _ready() -> void:
 	high_score_label.text = "High Score: %d" % GameManager.high_score
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("start"):
 		get_tree().change_scene_to_file.call_deferred(next_scene)

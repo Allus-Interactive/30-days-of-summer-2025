@@ -9,3 +9,8 @@ script = ExtResource("1_dovo2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 100)
 texture = ExtResource("2_dovo2")
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_animation_timer_timeout"]

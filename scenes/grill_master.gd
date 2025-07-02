@@ -36,9 +36,7 @@ func add_score(value: int) -> void:
 
 
 func on_timer_finished():
-	# Game end
-	print("Time's Up")
-	# TODO implement game end logic
+	# Game End
 	GameManager.current_score = score
 	if score > GameManager.high_score:
 		GameManager.high_score = score
@@ -50,8 +48,8 @@ func _on_food_spawn_timer_timeout() -> void:
 	if not sizzle_sfx.playing:
 		sizzle_sfx.play()
 	
-	var available_slots = grill_slots.filter(func(slot):
-		return not slot.occupied
+	var available_slots = grill_slots.filter(func(_slot):
+		return not _slot.occupied
 	)
 	
 	if available_slots.is_empty():
@@ -64,7 +62,6 @@ func _on_food_spawn_timer_timeout() -> void:
 	var slot = available_slots.pick_random()
 	food.global_position = slot.global_position
 	add_child(food)
-	food.food_data
 	if food_spawn_timer.wait_time > 1.0:
 		food_spawn_timer.wait_time -= 0.1
 	
