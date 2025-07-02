@@ -46,12 +46,13 @@ theme = ExtResource("3_2pddd")
 disabled = true
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="HighScoreButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 theme = ExtResource("3_2pddd")
-text = "Quit"
+disabled = true
+text = "High Scores"
 
 [node name="HighScoreLabel" type="Label" parent="CanvasLayer"]
 offset_left = 240.0
