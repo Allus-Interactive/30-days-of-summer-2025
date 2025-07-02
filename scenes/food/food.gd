@@ -20,6 +20,7 @@ var flipped = false
 func _ready() -> void:
 	set_food_to_raw()
 	# sizzle_sfx.play()
+	GameManager.flip_the_food.connect(on_flip_food)
 
 
 func _on_cooking_timer_timeout() -> void:
@@ -54,8 +55,9 @@ func remove_food():
 		slot.occupied = false
 	queue_free()
 
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed:
+
+func on_flip_food(player_position: float) -> void:
+	if global_position.x == player_position:
 		if current_state == State.READY:
 			if flipped:
 				remove_food()
