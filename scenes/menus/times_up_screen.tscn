@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://de5ruodr2dnj4"]
+
+[ext_resource type="Script" uid="uid://bfxdb27wsglef" path="res://scenes/menus/times_up_screen.gd" id="1_yfpcn"]
+[ext_resource type="Texture2D" uid="uid://5r3jypmuby3i" path="res://assets/times_up.png" id="3_yfpcn"]
+[ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_xvht3"]
+
+[node name="TimesUpScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yfpcn")
+game_scene = "res://scenes/grill_master.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(480, 270)
+texture = ExtResource("3_yfpcn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 0.490196)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer"]
+offset_right = 960.0
+offset_bottom = 100.0
+theme = ExtResource("7_xvht3")
+theme_override_font_sizes/font_size = 72
+text = "Time's Up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YourScoreLabel" type="Label" parent="CanvasLayer"]
+offset_top = 130.0
+offset_right = 960.0
+offset_bottom = 190.0
+theme = ExtResource("7_xvht3")
+text = "Your Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="CanvasLayer"]
+offset_top = 200.0
+offset_right = 960.0
+offset_bottom = 260.0
+theme = ExtResource("7_xvht3")
+text = "High Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer"]
+offset_top = 320.0
+offset_right = 960.0
+offset_bottom = 420.0
+theme = ExtResource("7_xvht3")
+theme_override_font_sizes/font_size = 72
+text = "New High Score!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgainLabel" type="Label" parent="CanvasLayer"]
+offset_top = 475.0
+offset_right = 960.0
+offset_bottom = 535.0
+theme = ExtResource("7_xvht3")
+text = "Press Space to Play Again"
+horizontal_alignment = 1
+vertical_alignment = 1

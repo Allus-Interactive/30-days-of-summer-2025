@@ -8,7 +8,7 @@ const FOOD_TYPES =[
 ]
 
 
-@export var next_scene: String
+@export var times_up_scene: String
 
 
 @onready var grill_slots: Array = $GrillArea/GrillSlots.get_children()
@@ -39,10 +39,11 @@ func on_timer_finished():
 	# Game end
 	print("Time's Up")
 	# TODO implement game end logic
+	GameManager.current_score = score
 	if score > GameManager.high_score:
 		GameManager.high_score = score
 		GameManager.save_high_score(score)
-	get_tree().change_scene_to_file.call_deferred(next_scene)
+	get_tree().change_scene_to_file.call_deferred(times_up_scene)
 
 
 func _on_food_spawn_timer_timeout() -> void:

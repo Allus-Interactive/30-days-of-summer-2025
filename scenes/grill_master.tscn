@@ -33,7 +33,7 @@ animations = [{
 
 [node name="GrillMaster" type="Node2D"]
 script = ExtResource("1_d78sw")
-next_scene = "res://scenes/menus/title_screen.tscn"
+times_up_scene = "res://scenes/menus/times_up_screen.tscn"
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(480, 270)
