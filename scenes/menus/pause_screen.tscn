@@ -15,7 +15,6 @@ script = ExtResource("1_4gqjv")
 main_menu_scene = "res://scenes/menus/main menu/main_menu.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_right = 960.0
@@ -37,7 +36,7 @@ offset_right = 960.0
 offset_bottom = 466.0
 theme = ExtResource("2_xb2gs")
 theme_override_font_sizes/font_size = 32
-text = "Press Escape to Resume
+text = "Press Space to Resume
 Press Q to Quit To Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
