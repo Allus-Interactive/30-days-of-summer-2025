@@ -24,4 +24,6 @@ func _process(_delta: float) -> void:
 		get_tree().paused = false
 	
 	if Input.is_action_just_pressed("quit"):
+		canvas_layer.visible = false
+		get_tree().paused = false
 		get_tree().change_scene_to_file.call_deferred(main_menu_scene)
