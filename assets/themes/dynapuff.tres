@@ -6,6 +6,9 @@
 
 [resource]
 default_font = ExtResource("1_j14r1")
+Button/colors/font_color = Color(0.619608, 0.141176, 0.0745098, 1)
+Button/colors/font_focus_color = Color(0.983502, 0.501479, 0.418161, 1)
+Button/font_sizes/font_size = 48
 Label/colors/font_color = Color(0.619608, 0.141176, 0.0745098, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0)
