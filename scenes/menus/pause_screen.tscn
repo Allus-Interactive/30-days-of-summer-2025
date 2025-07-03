@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://jd1pq3pnjugm"]
+[gd_scene load_steps=3 format=3 uid="uid://jd1pq3pnjugm"]
 
 [ext_resource type="Script" uid="uid://bu5j8xc0phkq5" path="res://scenes/menus/pause_screen.gd" id="1_4gqjv"]
 [ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="2_xb2gs"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4gqjv"]
-font_size = 32
 
 [node name="Pause Screen" type="Control"]
 process_mode = 3
@@ -15,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4gqjv")
+main_menu_scene = "res://scenes/menus/main menu/main_menu.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -34,13 +32,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-visible = false
-offset_top = 420.0
+offset_top = 350.0
 offset_right = 960.0
-offset_bottom = 536.0
+offset_bottom = 466.0
 theme = ExtResource("2_xb2gs")
+theme_override_font_sizes/font_size = 32
 text = "Press Escape to Resume
 Press Q to Quit To Menu"
-label_settings = SubResource("LabelSettings_4gqjv")
 horizontal_alignment = 1
 vertical_alignment = 1
