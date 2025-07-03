@@ -41,6 +41,9 @@ func on_timer_finished():
 	if score > GameManager.high_score:
 		GameManager.high_score = score
 		GameManager.save_high_score(score)
+		# TODO: implement online High Score Leaderboard
+		# TODO: add input for player initials to replace hardcoded "RWM" 
+		# GameManager.submit_score("RWM", score)
 	get_tree().change_scene_to_file.call_deferred(times_up_scene)
 
 

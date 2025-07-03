@@ -25,3 +25,24 @@ func load_high_score() -> int:
 			return 0
 	else:
 		return 0
+
+
+func submit_score(username: String, new_score: int):
+	var http = HTTPRequest.new()
+	add_child(http)
+	
+	var data = { "name": username, "score": new_score }
+	var json_data= JSON.stringify(data)
+	print (json_data)
+	
+	http.request_completed.connect(_on_request_completed)
+	
+	var headers = ["Content-Type: application/json"]
+	http.request("http://localhost:3000/submit", headers, HTTPClient.Method.METHOD_POST, json_data)
+
+
+func _on_request_completed(_result: int, response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:
+	if response_code == 200:
+		print("Score submitted successfully!")
+	else:
+		print("Failed to submit score. Response code:", response_code)
