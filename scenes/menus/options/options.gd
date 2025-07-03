@@ -1,9 +1,6 @@
 extends Control
 
 
-#var is_muted: bool = false
-
-
 @export var prev_scene: String
 
 
