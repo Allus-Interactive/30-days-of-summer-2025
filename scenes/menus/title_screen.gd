@@ -5,6 +5,7 @@ extends Control
 
 
 func _ready() -> void:
+	GameManager.high_score = GameManager.load_high_score()
 	var bg_music = GameManager.get_node("MusicPlayer")
 	if bg_music and not bg_music.playing:
 		bg_music.play() 

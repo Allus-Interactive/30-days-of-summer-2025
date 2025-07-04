@@ -17,6 +17,7 @@ const FOOD_TYPES =[
 @onready var food_spawn_timer: Timer = $GrillArea/FoodSpawnTimer
 @onready var level_timer: Timer = $LevelTimer
 @onready var sizzle_sfx: AudioStreamPlayer2D = $SizzleSFX
+@onready var ticking_sfx: AudioStreamPlayer2D = $TickingSFX
 
 
 var food_scene = preload("res://scenes/food/food.tscn")
@@ -28,6 +29,11 @@ func _ready() -> void:
 	add_to_group("game")
 	food_spawn_timer.start()
 	timer_label.text = "Time: %d" % time_remaining
+
+
+func _process(delta: float) -> void:
+	if time_remaining == 10:
+		ticking_sfx.play()
 
 
 func add_score(value: int) -> void:

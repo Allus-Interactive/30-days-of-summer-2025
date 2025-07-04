@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://1gnp2gl387aa"]
+[gd_scene load_steps=11 format=3 uid="uid://1gnp2gl387aa"]
 
 [ext_resource type="Script" uid="uid://ce4v211ythoe3" path="res://scenes/menus/title_screen.gd" id="1_n17qi"]
-[ext_resource type="Texture2D" uid="uid://cbn6omwkhbwwm" path="res://assets/title_screen.png" id="2_ptv5j"]
+[ext_resource type="Texture2D" uid="uid://cbn6omwkhbwwm" path="res://assets/background/title_screen.png" id="2_ptv5j"]
 [ext_resource type="Texture2D" uid="uid://cymnmnks1sxto" path="res://assets/flame/flame_2.png" id="3_ptv5j"]
 [ext_resource type="Texture2D" uid="uid://eo7xll3s1jd1" path="res://assets/flame/flame_1.png" id="4_jhqb3"]
 [ext_resource type="Texture2D" uid="uid://d304avqfvx4u1" path="res://assets/food/burger/burger_cooked.png" id="5_ssxho"]
 [ext_resource type="Texture2D" uid="uid://cp8v8li15ikfx" path="res://assets/food/sausage/sausage_cooked.png" id="6_30q4t"]
+[ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_jhqb3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugfu2"]
 atlas = ExtResource("3_ptv5j")
@@ -61,3 +62,12 @@ texture = ExtResource("6_30q4t")
 [node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(300, 0)
 texture = ExtResource("5_ssxho")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 645.0
+offset_bottom = 133.0
+theme = ExtResource("7_jhqb3")
+theme_override_font_sizes/font_size = 110
+text = "Grill Master"
+vertical_alignment = 1
