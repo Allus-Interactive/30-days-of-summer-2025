@@ -4,8 +4,8 @@ extends Control
 @export var prev_scene: String
 
 
-@onready var high_score_label: Label = $CanvasLayer/HighScoreLabel
-@onready var online_high_score_label: Label = $CanvasLayer/OnlineHighScoreLabel
+@onready var high_score_label: Label = $CanvasLayer/HBoxContainer/VBoxContainer/HighScoreLabel
+@onready var online_high_score_label: Label = $CanvasLayer/HBoxContainer/VBoxContainer2/OnlineHighScoreLabel
 @onready var back_button: Button = $CanvasLayer/BackButton
 
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 	GameManager.high_score = GameManager.load_high_score()
 	if GameManager.high_score <= 0:
 		high_score_label.visible = false
-	high_score_label.text = "Your High Score: %d" % GameManager.high_score
+	high_score_label.text = "Your High\nScore: %d" % GameManager.high_score
 	
 	# TODO: implement online High Score Leaderboard
 	# online_high_score_label.text = ""

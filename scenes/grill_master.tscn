@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://d2pb2s3uynfy4"]
 
 [ext_resource type="Script" uid="uid://d0pxnpnqcq5m8" path="res://scenes/grill_master.gd" id="1_d78sw"]
-[ext_resource type="Texture2D" uid="uid://cbml52o5ut3n" path="res://assets/background.png" id="2_5chkt"]
+[ext_resource type="Texture2D" uid="uid://cbml52o5ut3n" path="res://assets/background/background.png" id="2_5chkt"]
 [ext_resource type="Script" uid="uid://d3sh38pf2ng6e" path="res://scenes/grill_slot.gd" id="3_5chkt"]
 [ext_resource type="Texture2D" uid="uid://cymnmnks1sxto" path="res://assets/flame/flame_2.png" id="3_u0tv4"]
 [ext_resource type="Texture2D" uid="uid://eo7xll3s1jd1" path="res://assets/flame/flame_1.png" id="4_of3aw"]
