@@ -98,7 +98,7 @@ vertical_alignment = 1
 
 [node name="SizzleSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_of3aw")
-volume_db = -20.0
+volume_db = -25.0
 
 [node name="Player" parent="." instance=ExtResource("8_5jr27")]
 position = Vector2(480, 400)
