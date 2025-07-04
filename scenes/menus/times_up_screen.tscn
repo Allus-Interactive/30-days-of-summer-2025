@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://de5ruodr2dnj4"]
 
 [ext_resource type="Script" uid="uid://bfxdb27wsglef" path="res://scenes/menus/times_up_screen.gd" id="1_yfpcn"]
-[ext_resource type="Texture2D" uid="uid://5r3jypmuby3i" path="res://assets/times_up.png" id="3_yfpcn"]
+[ext_resource type="Texture2D" uid="uid://5r3jypmuby3i" path="res://assets/plain_bg.png" id="3_yfpcn"]
 [ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_xvht3"]
 
 [node name="TimesUpScreen" type="Control"]
