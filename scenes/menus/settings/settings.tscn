@@ -71,6 +71,24 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MusicLabel" type="Label" parent="CanvasLayer"]
+offset_left = 360.0
+offset_top = 150.0
+offset_right = 602.0
+offset_bottom = 209.0
+theme = ExtResource("7_xv57m")
+text = "Music/SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MuteButton" type="Button" parent="CanvasLayer"]
+offset_left = 360.0
+offset_top = 225.0
+offset_right = 600.0
+offset_bottom = 268.0
+theme = ExtResource("7_xv57m")
+text = "Mute"
+
 [node name="BackButton" type="Button" parent="CanvasLayer"]
 offset_left = 360.0
 offset_top = 475.0
@@ -79,4 +97,5 @@ offset_bottom = 518.0
 theme = ExtResource("7_xv57m")
 text = "Back"
 
+[connection signal="pressed" from="CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
