@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://buykthe3q2t77"]
+
+[ext_resource type="Script" uid="uid://byo4tq8ngm5km" path="res://scenes/menus/settings/settings.gd" id="1_7r86w"]
+[ext_resource type="Texture2D" uid="uid://cbml52o5ut3n" path="res://assets/background/background.png" id="2_psei7"]
+[ext_resource type="Texture2D" uid="uid://cymnmnks1sxto" path="res://assets/flame/flame_2.png" id="3_61g84"]
+[ext_resource type="Texture2D" uid="uid://eo7xll3s1jd1" path="res://assets/flame/flame_1.png" id="4_skl6q"]
+[ext_resource type="Texture2D" uid="uid://d304avqfvx4u1" path="res://assets/food/burger/burger_cooked.png" id="5_eqqjl"]
+[ext_resource type="Texture2D" uid="uid://cp8v8li15ikfx" path="res://assets/food/sausage/sausage_cooked.png" id="6_oj3ju"]
+[ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_xv57m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugfu2"]
+atlas = ExtResource("3_61g84")
+region = Rect2(0, 0, 295, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssxho"]
+atlas = ExtResource("4_skl6q")
+region = Rect2(0, 0, 295, 236)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbt1x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugfu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssxho")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Settings" type="Node2D"]
+script = ExtResource("1_7r86w")
+prev_scene = "res://scenes/menus/main menu/main_menu.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(480, 270)
+texture = ExtResource("2_psei7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Sprite2D"]
+position = Vector2(255, -110)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_wbt1x")
+autoplay = "default"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Sprite2D"]
+position = Vector2(-300, 0)
+texture = ExtResource("5_eqqjl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Sprite2D"]
+position = Vector2(-150, 0)
+texture = ExtResource("6_oj3ju")
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Sprite2D"]
+position = Vector2(300, 0)
+texture = ExtResource("5_eqqjl")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 960.0
+offset_bottom = 100.0
+theme = ExtResource("7_xv57m")
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+offset_left = 360.0
+offset_top = 475.0
+offset_right = 600.0
+offset_bottom = 518.0
+theme = ExtResource("7_xv57m")
+text = "Back"
+
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
