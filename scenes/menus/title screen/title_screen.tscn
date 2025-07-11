@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://1gnp2gl387aa"]
 
-[ext_resource type="Script" uid="uid://ce4v211ythoe3" path="res://scenes/menus/title_screen.gd" id="1_n17qi"]
+[ext_resource type="Script" uid="uid://ce4v211ythoe3" path="res://scenes/menus/title screen/title_screen.gd" id="1_n17qi"]
 [ext_resource type="Texture2D" uid="uid://cbn6omwkhbwwm" path="res://assets/background/title_screen.png" id="2_ptv5j"]
 [ext_resource type="Texture2D" uid="uid://cymnmnks1sxto" path="res://assets/flame/flame_2.png" id="3_ptv5j"]
 [ext_resource type="Texture2D" uid="uid://eo7xll3s1jd1" path="res://assets/flame/flame_1.png" id="4_jhqb3"]
@@ -38,7 +38,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n17qi")
-next_scene = "res://scenes/menus/main menu/main_menu.tscn"
+next_scene = "res://scenes/grill_master.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(480, 270)

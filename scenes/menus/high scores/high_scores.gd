@@ -1,31 +1,37 @@
-extends Control
+extends Node2D
 
 
-@export var prev_scene: String
+@export var game_scene: String
 
 
-@onready var high_score_label: Label = $CanvasLayer/HBoxContainer/VBoxContainer/HighScoreLabel
-@onready var online_high_score_label: Label = $CanvasLayer/HBoxContainer/VBoxContainer2/OnlineHighScoreLabel
-@onready var back_button: Button = $CanvasLayer/BackButton
+@onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/LocalLeaderboardContainer
+@onready var local_leaderboard: Label = $CanvasLayer/LocalLeaderboardContainer/LocalLeaderboard
+# @onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer
+# @onready var local_leaderboard: Label = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer/LocalLeaderboard
+@onready var global_leaderboard: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalLeaderboard
+@onready var global_title: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalTitle
 
 
-func _ready() -> void:
-	back_button.grab_focus()
+func _ready() -> void:	
+	# Local Leaderboard Logic
+	GameManager.load_local_leaderboard()
+	for i in GameManager.leaderboard["scores"].size():
+		var entry = GameManager.leaderboard["scores"][i]
+		local_leaderboard.text += str(i + 1) + ": " + entry["name"] + " - " + str(entry["score"]) + "\n"
 	
-	GameManager.high_score = GameManager.load_high_score()
-	if GameManager.high_score <= 0:
-		high_score_label.visible = false
-	high_score_label.text = "Your High\nScore: %d" % GameManager.high_score
-	
+	# Global Leaderboard Logic
 	# TODO: implement online High Score Leaderboard
-	# online_high_score_label.text = ""
 	# get_high_scores()
 
 
 func get_high_scores():
+	print("Retreiving global leaderboard...")
 	var http = HTTPRequest.new()
+	# add request node to scene tree
 	add_child(http)
+	# connect function to run on request completion
 	http.request_completed.connect(_on_scores_received)
+	# make the request
 	http.request("http://localhost:3000/scores")
 
 
@@ -38,10 +44,15 @@ func _on_scores_received(_result, _code, _headers, body):
 		print(result)
 		for entry in result:
 			print("%s: %d\n" % [entry["name"], entry["score"]])
-			online_high_score_label.text += "%s: %d\n" % [entry["name"], entry["score"]]
+			global_leaderboard.text += "%s: %d\n" % [entry["name"], entry["score"]]
 	else:
 		print("JSON parsing failed with error code: ", error)
-		online_high_score_label.text = "Unable to retrieve high scores. Please try again later."
+		global_title.visible = false
+		global_leaderboard.text = "Unable to retrieve leaderboard. Please try again later."
 
-func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file.call_deferred(prev_scene)
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_SPACE:
+				get_tree().change_scene_to_file.call_deferred(game_scene)

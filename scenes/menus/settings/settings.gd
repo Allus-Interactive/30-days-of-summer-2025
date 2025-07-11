@@ -1,11 +1,11 @@
-extends Control
+extends Node2D
 
 
 @export var prev_scene: String
 
 
-@onready var mute_button: Button = $CanvasLayer/HBoxContainer/VBoxContainer/MuteButton
-@onready var back_button: Button = $CanvasLayer/HBoxContainer/VBoxContainer/BackButton
+@onready var mute_button: Button = $CanvasLayer/MuteButton
+@onready var back_button: Button = $CanvasLayer/BackButton
 
 
 func _ready() -> void:

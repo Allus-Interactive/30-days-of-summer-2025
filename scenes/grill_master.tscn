@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dfu527utrhcma" path="res://assets/sfx/sizzle_loop.mp3" id="7_of3aw"]
 [ext_resource type="PackedScene" uid="uid://bdhods3l4na3p" path="res://scenes/player/player.tscn" id="8_5jr27"]
 [ext_resource type="AudioStream" uid="uid://ckcs18nb5jpt5" path="res://assets/sfx/ticking.mp3" id="8_ephtx"]
-[ext_resource type="PackedScene" uid="uid://jd1pq3pnjugm" path="res://scenes/menus/pause_screen.tscn" id="9_h01v4"]
+[ext_resource type="PackedScene" uid="uid://jd1pq3pnjugm" path="res://scenes/menus/pause menu/pause_screen.tscn" id="9_h01v4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5jr27"]
 atlas = ExtResource("3_u0tv4")
@@ -35,7 +35,8 @@ animations = [{
 
 [node name="GrillMaster" type="Node2D"]
 script = ExtResource("1_d78sw")
-times_up_scene = "res://scenes/menus/times_up_screen.tscn"
+times_up_scene = "res://scenes/menus/times up screen/times_up_screen.tscn"
+lb_submit_scene = "res://scenes/menus/leaderboard submit/leaderboard_submit.tscn"
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(480, 270)
