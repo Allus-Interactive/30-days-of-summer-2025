@@ -37,13 +37,8 @@ func _on_scores_received(_result, _code, _headers, body):
 		var result = json.data
 		print(result)
 		for entry in result:
-			print(entry)
-			if entry == "error":
-				# Auth Error
-				online_high_score_label.text = "Unable to retrieve high scores. Please try again later."
-			else:
-				print("%s: %d\n" % [entry["name"], entry["score"]])
-				online_high_score_label.text += "%s: %d\n" % [entry["name"], entry["score"]]
+			print("%s: %d\n" % [entry["name"], entry["score"]])
+			online_high_score_label.text += "%s: %d\n" % [entry["name"], entry["score"]]
 	else:
 		print("JSON parsing failed with error code: ", error)
 		online_high_score_label.text = "Unable to retrieve high scores. Please try again later."

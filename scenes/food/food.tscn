@@ -29,6 +29,10 @@ wait_time = 0.25
 [node name="FoodAnimTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="BurnedTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="CookingTimer" to="." method="_on_cooking_timer_timeout"]
 [connection signal="timeout" from="PlayerAnimTimer" to="." method="_on_player_anim_timer_timeout"]
 [connection signal="timeout" from="FoodAnimTimer" to="." method="_on_food_anim_timer_timeout"]
+[connection signal="timeout" from="BurnedTimer" to="." method="_on_burned_timer_timeout"]

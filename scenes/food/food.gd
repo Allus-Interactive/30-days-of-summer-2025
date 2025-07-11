@@ -15,6 +15,7 @@ var flipped = false
 @onready var sizzle_sfx: AudioStreamPlayer2D = $SizzleSFX
 @onready var player_anim_timer: Timer = $PlayerAnimTimer
 @onready var food_anim_timer: Timer = $FoodAnimTimer
+@onready var burned_timer: Timer = $BurnedTimer
 
 
 func _ready() -> void:
@@ -33,6 +34,7 @@ func _on_cooking_timer_timeout() -> void:
 		State.READY:
 			current_state = State.BURNED
 			sprite_2d.texture = food_data.texture_burned
+			burned_timer.start()
 		_:
 			pass
 
@@ -58,6 +60,7 @@ func on_flip_food(player_position: float) -> void:
 				cooking_timer.stop()
 				player_anim_timer.start()
 				food_anim_timer.start()
+				GameManager.cooking_streak += 1
 			else:
 				flip_food_sprite()
 				await get_tree().create_timer(0.2).timeout
@@ -68,6 +71,7 @@ func on_flip_food(player_position: float) -> void:
 			cooking_timer.stop()
 			player_anim_timer.start()
 			food_anim_timer.start()
+			GameManager.cooking_streak = 0
 
 
 func flip_food_sprite() -> void:
@@ -96,3 +100,8 @@ func _on_food_anim_timer_timeout() -> void:
 	elif current_state == State.BURNED:
 		remove_food()
 		get_tree().call_group("game", "add_score", -5)
+
+
+func _on_burned_timer_timeout() -> void:
+	remove_food()
+	get_tree().call_group("game", "add_score", -10)

@@ -3,6 +3,7 @@ extends Node2D
 
 var current_score: int = 0
 var high_score: int = 0
+var cooking_streak: int = 0
 var is_muted: bool = false
 signal flip_the_food(current_position: float)
 
