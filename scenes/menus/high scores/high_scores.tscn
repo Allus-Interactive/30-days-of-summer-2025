@@ -33,7 +33,7 @@ animations = [{
 
 [node name="HighScores" type="Node2D"]
 script = ExtResource("1_pm6h4")
-prev_scene = "res://scenes/menus/main menu/main_menu.tscn"
+game_scene = "res://scenes/grill_master.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -72,14 +72,6 @@ text = "Leaderboards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackButton" type="Button" parent="CanvasLayer"]
-offset_left = 360.0
-offset_top = 475.0
-offset_right = 600.0
-offset_bottom = 518.0
-theme = ExtResource("3_i8bdw")
-text = "Back"
-
 [node name="LocalLeaderboardContainer" type="VBoxContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(240, 355)
 offset_left = 360.0
@@ -99,6 +91,15 @@ text = "Local Leaderboard"
 [node name="LocalLeaderboard" type="Label" parent="CanvasLayer/LocalLeaderboardContainer"]
 layout_mode = 2
 theme = ExtResource("8_pt2hk")
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="CanvasLayer/LocalLeaderboardContainer"]
+layout_mode = 2
+theme = ExtResource("3_i8bdw")
+theme_override_font_sizes/font_size = 20
+text = "Press Space to Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 visible = false
@@ -148,5 +149,3 @@ text = "Global Leaderboard"
 [node name="GlobalLeaderboard" type="Label" parent="CanvasLayer/HBoxContainer/OnlineLeaderboardContainer"]
 layout_mode = 2
 theme = ExtResource("8_pt2hk")
-
-[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

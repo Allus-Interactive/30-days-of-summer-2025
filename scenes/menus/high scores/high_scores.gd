@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var prev_scene: String
+@export var game_scene: String
 
 
 @onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/LocalLeaderboardContainer
@@ -9,13 +9,10 @@ extends Node2D
 # @onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer
 # @onready var local_leaderboard: Label = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer/LocalLeaderboard
 @onready var global_leaderboard: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalLeaderboard
-@onready var back_button: Button = $CanvasLayer/BackButton
 @onready var global_title: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalTitle
 
 
-func _ready() -> void:
-	back_button.grab_focus()
-	
+func _ready() -> void:	
 	# Local Leaderboard Logic
 	GameManager.load_local_leaderboard()
 	for i in GameManager.leaderboard["scores"].size():
@@ -39,7 +36,6 @@ func get_high_scores():
 
 
 func _on_scores_received(_result, _code, _headers, body):
-	
 	var json = JSON.new()
 	var error = json.parse(body.get_string_from_utf8())
 	
@@ -55,5 +51,8 @@ func _on_scores_received(_result, _code, _headers, body):
 		global_leaderboard.text = "Unable to retrieve leaderboard. Please try again later."
 
 
-func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file.call_deferred(prev_scene)
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_SPACE:
+				get_tree().change_scene_to_file.call_deferred(game_scene)

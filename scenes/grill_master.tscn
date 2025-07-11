@@ -37,7 +37,6 @@ animations = [{
 script = ExtResource("1_d78sw")
 times_up_scene = "res://scenes/menus/times up screen/times_up_screen.tscn"
 lb_submit_scene = "res://scenes/menus/leaderboard submit/leaderboard_submit.tscn"
-time_remaining = 20
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(480, 270)

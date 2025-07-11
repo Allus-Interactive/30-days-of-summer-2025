@@ -114,7 +114,19 @@ text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="InfoLabel" type="Label" parent="CanvasLayer"]
+offset_top = 342.0
+offset_right = 960.0
+offset_bottom = 442.0
+theme = ExtResource("7_d208j")
+theme_override_font_sizes/font_size = 20
+text = "WASD to enter your initals
+Space to Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LeaderboardButton" type="Button" parent="CanvasLayer"]
+visible = false
 offset_left = 360.0
 offset_top = 475.0
 offset_right = 600.0

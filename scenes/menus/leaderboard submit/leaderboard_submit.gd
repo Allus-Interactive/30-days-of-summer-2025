@@ -36,6 +36,10 @@ func _input(event):
 				cycle_letter(1)
 			KEY_S:
 				cycle_letter(-1)
+			KEY_SPACE:
+				player_initials = letters[0] + letters[1] + letters[2]
+				GameManager.add_score_to_local_leaderboard(player_initials, GameManager.current_score)
+				get_tree().change_scene_to_file.call_deferred(lb_scene)
 
 
 func cycle_letter(direction: int):
