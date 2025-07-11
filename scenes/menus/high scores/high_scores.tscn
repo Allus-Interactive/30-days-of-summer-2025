@@ -106,7 +106,12 @@ layout_mode = 2
 theme = ExtResource("8_pt2hk")
 text = "Local Leaderboard"
 
+[node name="LocalLeaderboard" type="Label" parent="CanvasLayer/HBoxContainer/LocalLeaderboardContainer"]
+layout_mode = 2
+theme = ExtResource("8_pt2hk")
+
 [node name="OnlineLeaderboardContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(240, 355)
 layout_mode = 2
 size_flags_vertical = 4
@@ -114,9 +119,12 @@ theme_override_constants/separation = 25
 alignment = 1
 
 [node name="GlobalTitle" type="Label" parent="CanvasLayer/HBoxContainer/OnlineLeaderboardContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("8_pt2hk")
 text = "Global Leaderboard"
+
+[node name="GlobalLeaderboard" type="Label" parent="CanvasLayer/HBoxContainer/OnlineLeaderboardContainer"]
+layout_mode = 2
+theme = ExtResource("8_pt2hk")
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
