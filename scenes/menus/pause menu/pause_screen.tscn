@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4gqjv")
-main_menu_scene = "res://scenes/menus/main menu/main_menu.tscn"
+title_scene = "res://scenes/menus/title screen/title_screen.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -37,6 +37,6 @@ offset_bottom = 466.0
 theme = ExtResource("2_xb2gs")
 theme_override_font_sizes/font_size = 32
 text = "Press Space to Resume
-Press Q to Quit To Menu"
+Press Q to Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
