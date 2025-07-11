@@ -9,13 +9,17 @@ const FOOD_TYPES =[
 
 
 @export var times_up_scene: String
+@export var combo_streak: int = 5
+@export var combo_multiplier: int = 5
 
 
 @onready var grill_slots: Array = $GrillArea/GrillSlots.get_children()
 @onready var score_label: Label = $CanvasLayer/ScoreLabel
+@onready var combo_label: Label = $CanvasLayer/ComboLabel
 @onready var timer_label: Label = $CanvasLayer/TimerLabel
 @onready var food_spawn_timer: Timer = $GrillArea/FoodSpawnTimer
 @onready var level_timer: Timer = $LevelTimer
+@onready var combo_label_timer: Timer = $ComboLabelTimer
 @onready var sizzle_sfx: AudioStreamPlayer2D = $SizzleSFX
 @onready var ticking_sfx: AudioStreamPlayer2D = $TickingSFX
 
@@ -29,6 +33,7 @@ func _ready() -> void:
 	add_to_group("game")
 	food_spawn_timer.start()
 	timer_label.text = "Time: %d" % time_remaining
+	combo_label.visible = false
 
 
 func _process(delta: float) -> void:
@@ -37,7 +42,12 @@ func _process(delta: float) -> void:
 
 
 func add_score(value: int) -> void:
-	score += value
+	if GameManager.cooking_streak == combo_streak:
+		# TODO: add 'Tasty' sfx
+		score += (value * combo_multiplier)
+		combo_label.visible = true
+	else:
+		score += value
 	score_label.text = "Score: %d" % score
 
 
@@ -85,3 +95,7 @@ func _on_level_timer_timeout() -> void:
 	if time_remaining <= 0:
 		level_timer.stop()
 		on_timer_finished()
+
+
+func _on_combo_label_timer_timeout() -> void:
+	combo_label.visible = false

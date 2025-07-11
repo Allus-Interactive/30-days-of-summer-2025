@@ -78,6 +78,9 @@ autostart = true
 [node name="LevelTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ComboLabelTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer"]
@@ -85,6 +88,17 @@ offset_right = 200.0
 offset_bottom = 70.0
 theme = ExtResource("6_u0tv4")
 text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComboLabel" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 380.0
+offset_top = 20.0
+offset_right = 580.0
+offset_bottom = 90.0
+theme = ExtResource("6_u0tv4")
+text = "Tasty!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -111,3 +125,4 @@ position = Vector2(480, 400)
 
 [connection signal="timeout" from="GrillArea/FoodSpawnTimer" to="." method="_on_food_spawn_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="ComboLabelTimer" to="." method="_on_combo_label_timer_timeout"]
