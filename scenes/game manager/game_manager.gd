@@ -27,6 +27,13 @@ func _ready() -> void:
 	pass
 
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("mute"):
+		var bus_index = AudioServer.get_bus_index("Master")
+		is_muted = !is_muted
+		AudioServer.set_bus_mute(bus_index, is_muted)
+
+
 func add_score_to_local_leaderboard(name: String, score: int):
 	leaderboard["scores"].remove_at(9)
 	leaderboard["scores"].append({"name": name, "score": score})
