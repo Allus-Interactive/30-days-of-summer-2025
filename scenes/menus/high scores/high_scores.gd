@@ -4,8 +4,10 @@ extends Node2D
 @export var prev_scene: String
 
 
-@onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer
-@onready var local_leaderboard: Label = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer/LocalLeaderboard
+@onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/LocalLeaderboardContainer
+@onready var local_leaderboard: Label = $CanvasLayer/LocalLeaderboardContainer/LocalLeaderboard
+# @onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer
+# @onready var local_leaderboard: Label = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer/LocalLeaderboard
 @onready var global_leaderboard: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalLeaderboard
 @onready var back_button: Button = $CanvasLayer/BackButton
 @onready var global_title: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalTitle

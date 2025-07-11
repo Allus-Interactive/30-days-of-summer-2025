@@ -9,6 +9,8 @@ const FOOD_TYPES =[
 
 
 @export var times_up_scene: String
+@export var lb_submit_scene: String
+@export var time_remaining = 60
 @export var combo_streak: int = 5
 @export var combo_multiplier: int = 5
 
@@ -26,7 +28,6 @@ const FOOD_TYPES =[
 
 var food_scene = preload("res://scenes/food/food.tscn")
 var score = 0
-var time_remaining = 60
 
 
 func _ready() -> void:
@@ -54,13 +55,20 @@ func add_score(value: int) -> void:
 func on_timer_finished():
 	# Game End
 	GameManager.current_score = score
-	if score > GameManager.high_score:
-		GameManager.high_score = score
-		GameManager.save_high_score(score)
-		# TODO: implement online High Score Leaderboard
-		# TODO: add input for player initials to replace hardcoded "RWM" 
-		# GameManager.submit_score("RWM", score)
-	get_tree().change_scene_to_file.call_deferred(times_up_scene)
+	if score < GameManager.leaderboard["scores"].back()["score"]:
+		# load time's up, try again scene
+		get_tree().change_scene_to_file.call_deferred(times_up_scene)
+	else:
+		# load scene for leaderboard submission
+		get_tree().change_scene_to_file.call_deferred(lb_submit_scene)
+		
+	#if score > GameManager.high_score:
+		#GameManager.high_score = score
+		#GameManager.add_score_to_local_leaderboard("RWM", score)
+		## TODO: implement Leaderboard
+		## TODO: add input for player initials to replace hardcoded "RWM" 
+		## GameManager.submit_score("RWM", score)
+	#get_tree().change_scene_to_file.call_deferred(times_up_scene)
 
 
 func _on_food_spawn_timer_timeout() -> void:

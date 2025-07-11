@@ -16,11 +16,22 @@ var leaderboard = {
 		{"name": "DEF", "score": 120},
 		{"name": "GHI", "score": 100},
 		{"name": "JKL", "score": 80},
+		{"name": "STV", "score": 20},
 		{"name": "MNO", "score": 60},
 		{"name": "PQR", "score": 40},
-		{"name": "STV", "score": 20},
 	]
 }
+
+
+func _ready() -> void:
+	pass
+
+
+func add_score_to_local_leaderboard(name: String, score: int):
+	leaderboard["scores"].remove_at(9)
+	leaderboard["scores"].append({"name": name, "score": score})
+	leaderboard["scores"].sort_custom(func(a, b): return a["score"] > b["score"])
+	save_local_leaderboard()
 
 
 func save_high_score(score: int) -> void:

@@ -80,7 +80,28 @@ offset_bottom = 518.0
 theme = ExtResource("3_i8bdw")
 text = "Back"
 
+[node name="LocalLeaderboardContainer" type="VBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(240, 355)
+offset_left = 360.0
+offset_top = 89.0
+offset_right = 600.0
+offset_bottom = 444.0
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="LocalTitle" type="Label" parent="CanvasLayer/LocalLeaderboardContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("8_pt2hk")
+text = "Local Leaderboard"
+
+[node name="LocalLeaderboard" type="Label" parent="CanvasLayer/LocalLeaderboardContainer"]
+layout_mode = 2
+theme = ExtResource("8_pt2hk")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+visible = false
 custom_minimum_size = Vector2(480, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,19 +115,20 @@ offset_bottom = 177.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LocalLeaderboardContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+[node name="LocalLeaderboardContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(240, 355)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="LocalTitle" type="Label" parent="CanvasLayer/HBoxContainer/LocalLeaderboardContainer"]
+[node name="LocalTitle" type="Label" parent="CanvasLayer/HBoxContainer/LocalLeaderboardContainer2"]
 layout_mode = 2
 theme = ExtResource("8_pt2hk")
 text = "Local Leaderboard"
 
-[node name="LocalLeaderboard" type="Label" parent="CanvasLayer/HBoxContainer/LocalLeaderboardContainer"]
+[node name="LocalLeaderboard" type="Label" parent="CanvasLayer/HBoxContainer/LocalLeaderboardContainer2"]
 layout_mode = 2
 theme = ExtResource("8_pt2hk")
 
