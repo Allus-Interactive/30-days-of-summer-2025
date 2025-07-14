@@ -121,7 +121,7 @@ offset_bottom = 442.0
 theme = ExtResource("7_d208j")
 theme_override_font_sizes/font_size = 20
 text = "WASD to enter your initals
-Space to Confirm"
+Enter to Confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 

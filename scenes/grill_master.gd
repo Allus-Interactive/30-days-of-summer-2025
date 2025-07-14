@@ -28,47 +28,68 @@ const FOOD_TYPES =[
 
 var food_scene = preload("res://scenes/food/food.tscn")
 var score = 0
+var score_multiplier: float = 1
+var spawn_rate: float = 1
 
 
 func _ready() -> void:
 	add_to_group("game")
+	set_difficulty_multiplier()
+	# reset bool to false top allow food.gd to set up cooking timer
+	GameManager.food_data_setup = false
+	# update timer for difficulty level and start it
+	food_spawn_timer.wait_time = food_spawn_timer.wait_time * spawn_rate
 	food_spawn_timer.start()
 	timer_label.text = "Time: %d" % time_remaining
 	combo_label.visible = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if time_remaining == 10:
 		ticking_sfx.play()
 
 
+func set_difficulty_multiplier() -> void:
+	match GameManager.difficulty_level:
+		GameManager.Difficulty.easy:
+			score_multiplier = 0.75
+			spawn_rate = 1.25
+		GameManager.Difficulty.medium:
+			score_multiplier = 1
+			spawn_rate = 1
+		GameManager.Difficulty.hard:
+			score_multiplier = 1.25
+			spawn_rate = 0.75
+		_:
+			score_multiplier = 1
+			spawn_rate = 1
+
+
 func add_score(value: int) -> void:
+	var diff_score = value * score_multiplier
 	if GameManager.cooking_streak == combo_streak:
 		# TODO: add 'Tasty' sfx
-		score += (value * combo_multiplier)
+		score += (diff_score * combo_multiplier)
 		combo_label.visible = true
+		combo_label_timer.start()
 	else:
-		score += value
+		score += diff_score
 	score_label.text = "Score: %d" % score
 
 
 func on_timer_finished():
 	# Game End
 	GameManager.current_score = score
-	if score < GameManager.leaderboard["scores"].back()["score"]:
+	if GameManager.difficulty_level == GameManager.Difficulty.hard:
+		if score < GameManager.leaderboard["scores"].back()["score"]:
+			# load time's up, try again scene
+			get_tree().change_scene_to_file.call_deferred(times_up_scene)
+		else:
+			# load scene for leaderboard submission
+			get_tree().change_scene_to_file.call_deferred(lb_submit_scene)
+	else: 
 		# load time's up, try again scene
 		get_tree().change_scene_to_file.call_deferred(times_up_scene)
-	else:
-		# load scene for leaderboard submission
-		get_tree().change_scene_to_file.call_deferred(lb_submit_scene)
-		
-	#if score > GameManager.high_score:
-		#GameManager.high_score = score
-		#GameManager.add_score_to_local_leaderboard("RWM", score)
-		## TODO: implement Leaderboard
-		## TODO: add input for player initials to replace hardcoded "RWM" 
-		## GameManager.submit_score("RWM", score)
-	#get_tree().change_scene_to_file.call_deferred(times_up_scene)
 
 
 func _on_food_spawn_timer_timeout() -> void:
@@ -90,7 +111,7 @@ func _on_food_spawn_timer_timeout() -> void:
 	food.global_position = slot.global_position
 	add_child(food)
 	if food_spawn_timer.wait_time > 1.0:
-		food_spawn_timer.wait_time -= 0.1
+		food_spawn_timer.wait_time -= (0.1 * score_multiplier)
 	
 	slot.occupied = true
 	food.set_meta("grill_slot", slot)
