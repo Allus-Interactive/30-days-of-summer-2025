@@ -12,7 +12,7 @@ var food_data_setup: bool = false
 signal flip_the_food(current_position: float)
 
 var leaderboard = {
-	"scores": [  # Each entry can be a dictionary with name and score
+	"scores": [
 		{"name": "LFC", "score": 200},
 		{"name": "GOD", "score": 180},
 		{"name": "PRO", "score": 160},
@@ -20,9 +20,9 @@ var leaderboard = {
 		{"name": "DEF", "score": 120},
 		{"name": "GHI", "score": 100},
 		{"name": "JKL", "score": 80},
-		{"name": "STV", "score": 20},
 		{"name": "MNO", "score": 60},
 		{"name": "PQR", "score": 40},
+		{"name": "STV", "score": 20},
 	]
 }
 
