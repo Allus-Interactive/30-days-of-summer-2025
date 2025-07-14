@@ -6,6 +6,8 @@ enum State { RAW, COOKING, READY, BURNED }
 
 var current_state = State.RAW
 var flipped = false
+var cooking_speed: float = 1
+var initial_setup: bool = false
 
 @export var food_data: FoodData
 
@@ -19,9 +21,33 @@ var flipped = false
 
 
 func _ready() -> void:
+	# initial loop to set up difficulty for food items
+	#if not GameManager.food_data_setup:
+		#set_difficulty_multiplier()
+		#set_cooking_speed()
+		#GameManager.food_data_setup = true
+	
 	set_food_to_raw()
 	sizzle_sfx.play()
 	GameManager.flip_the_food.connect(on_flip_food)
+
+
+func set_difficulty_multiplier() -> void:
+	match GameManager.difficulty_level:
+		GameManager.Difficulty.easy:
+			cooking_speed = 1.25
+		GameManager.Difficulty.medium:
+			cooking_speed = 1
+		GameManager.Difficulty.hard:
+			cooking_speed = 0.75
+		_:
+			cooking_speed = 1
+
+
+func set_cooking_speed() -> void: 
+	food_data.cooking_time = food_data.cooking_time * cooking_speed
+	food_data.burned_time = food_data.burned_time * cooking_speed
+	print(food_data.food_name + ": cooking time - " + str(food_data.cooking_time))
 
 
 func _on_cooking_timer_timeout() -> void:

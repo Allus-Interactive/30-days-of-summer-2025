@@ -21,10 +21,10 @@ func _ready() -> void:
 	
 	# Global Leaderboard Logic
 	# TODO: implement online High Score Leaderboard
-	# get_high_scores()
+	# get_global_leaderboard()
 
 
-func get_high_scores():
+func get_global_leaderboard():
 	print("Retreiving global leaderboard...")
 	var http = HTTPRequest.new()
 	# add request node to scene tree
