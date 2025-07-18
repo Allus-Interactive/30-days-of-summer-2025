@@ -117,7 +117,8 @@ alignment = 1
 
 [node name="LocalTitle" type="Label" parent="CanvasLayer/HBoxContainer/LocalLeaderboardContainer"]
 layout_mode = 2
-theme = ExtResource("8_pt2hk")
+theme = ExtResource("3_i8bdw")
+theme_override_font_sizes/font_size = 16
 text = "Local Leaderboard"
 
 [node name="LocalLeaderboard" type="Label" parent="CanvasLayer/HBoxContainer/LocalLeaderboardContainer"]
@@ -133,7 +134,8 @@ alignment = 1
 
 [node name="GlobalTitle" type="Label" parent="CanvasLayer/HBoxContainer/OnlineLeaderboardContainer"]
 layout_mode = 2
-theme = ExtResource("8_pt2hk")
+theme = ExtResource("3_i8bdw")
+theme_override_font_sizes/font_size = 16
 text = "Global Leaderboard"
 
 [node name="GlobalLeaderboard" type="Label" parent="CanvasLayer/HBoxContainer/OnlineLeaderboardContainer"]

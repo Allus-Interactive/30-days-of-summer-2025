@@ -22,9 +22,10 @@ func get_local_leaderboard():
 	GameManager.load_local_leaderboard()
 	for i in GameManager.leaderboard["scores"].size():
 		var entry = GameManager.leaderboard["scores"][i]
-		local_leaderboard.text += "%d. %s - %d\n" % [i + 1, entry["name"], entry["score"]]
+		# local_leaderboard.text += "%d. %s - %d\n" % [i + 1, entry["name"], entry["score"]]
+		local_leaderboard.text += "%s%d. %s - %d\n" % [(" " if i < 9 else ""), i + 1, entry["name"], entry["score"]]
 		# fill global lb with local data until real data is loaded
-		global_leaderboard.text += "%d. %s - %d\n" % [i + 1, entry["name"], entry["score"]]
+		global_leaderboard.text += "%s%d. %s - %d\n" % [(" " if i < 9 else ""), i + 1, entry["name"], entry["score"]]
 
 
 func get_global_leaderboard():
@@ -61,7 +62,8 @@ func _on_scores_received(_result, response_code, _headers, body):
 	for i in range(min(10, scores.size())):
 		var e = scores[i]
 		print("%d. %s - %d" % [i + 1, e.name, e.score])
-		global_leaderboard.text += "%d. %s - %d\n" % [i + 1, e.name, e.score]
+		# global_leaderboard.text += "%d. %s - %d\n" % [i + 1, e.name, e.score]
+		global_leaderboard.text += "%s%d. %s - %d\n" % [(" " if i < 9 else ""), i + 1, e.name, e.score]
 
 
 func _input(event):
