@@ -3,12 +3,12 @@
 [ext_resource type="StyleBox" uid="uid://b2tyag70dmyo8" path="res://assets/themes/style boxes/button_hover.tres" id="1_tvqxm"]
 [ext_resource type="StyleBox" uid="uid://c3ud0xb8yf0cq" path="res://assets/themes/style boxes/button_normal.tres" id="2_xtyo2"]
 [ext_resource type="StyleBox" uid="uid://b4uxm2abdpgm4" path="res://assets/themes/style boxes/button_pressed.tres" id="3_mvx75"]
-[ext_resource type="FontFile" uid="uid://rtabl41k1trj" path="res://assets/fonts/DynaPuff-VariableFont_wdth,wght.ttf" id="4_pjabk"]
+[ext_resource type="FontFile" uid="uid://bgwtdx2doanu8" path="res://assets/fonts/ShareTechMono-Regular.ttf" id="4_tvqxm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j14r1"]
 
 [resource]
-default_font = ExtResource("4_pjabk")
+default_font = ExtResource("4_tvqxm")
 Button/colors/font_color = Color(0.619608, 0.141176, 0.0745098, 1)
 Button/colors/font_focus_color = Color(0.983502, 0.501479, 0.418161, 1)
 Button/font_sizes/font_size = 16
