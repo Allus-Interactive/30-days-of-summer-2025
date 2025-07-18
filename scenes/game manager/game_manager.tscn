@@ -9,3 +9,5 @@ script = ExtResource("1_4su5l")
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_btqu3")
 volume_db = -10.0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

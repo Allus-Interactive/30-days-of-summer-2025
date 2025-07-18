@@ -5,7 +5,7 @@ extends Node2D
 
 
 @onready var leaderboard_button: Button = $CanvasLayer/LeaderboardButton
-
+@onready var info_label: Label = $CanvasLayer/InfoLabel
 @onready var letter_labels = [
 	$CanvasLayer/Letter1,
 	$CanvasLayer/Letter2,
@@ -38,7 +38,10 @@ func _input(event):
 				cycle_letter(-1)
 			KEY_ENTER:
 				player_initials = letters[0] + letters[1] + letters[2]
+				GameManager.add_score_to_global_leaderboard(player_initials, GameManager.current_score)
 				GameManager.add_score_to_local_leaderboard(player_initials, GameManager.current_score)
+				info_label.text = "Loading..."
+				await get_tree().create_timer(2.0).timeout
 				get_tree().change_scene_to_file.call_deferred(lb_scene)
 
 

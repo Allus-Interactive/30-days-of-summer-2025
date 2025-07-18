@@ -4,13 +4,14 @@ extends Node2D
 enum Difficulty { easy, medium, hard }
 
 
+signal flip_the_food(current_position: float)
+
+
 var difficulty_level: Difficulty = Difficulty.medium
 var current_score: int = 0
 var cooking_streak: int = 0
 var is_muted: bool = false
 var food_data_setup: bool = false
-signal flip_the_food(current_position: float)
-
 var leaderboard = {
 	"scores": [
 		{"name": "LFC", "score": 200},
@@ -25,6 +26,10 @@ var leaderboard = {
 		{"name": "STV", "score": 20},
 	]
 }
+var firebase_url = "https://grill-master-leaderboard-default-rtdb.europe-west1.firebasedatabase.app/leaderboard.json"
+
+
+@onready var http_request: HTTPRequest = $HTTPRequest
 
 
 func _ready() -> void:
@@ -69,18 +74,24 @@ func load_local_leaderboard():
 		file.close()
 
 
-func save_to_global_leaderboard(username: String, new_score: int):
-	var http = HTTPRequest.new()
-	add_child(http)
+func add_score_to_global_leaderboard(username: String, new_score: int):
+	var data = {
+		"name": username,
+		"score": new_score
+	}
 	
-	var data = { "name": username, "score": new_score }
-	var json_data= JSON.stringify(data)
-	print (json_data)
-	
-	http.request_completed.connect(_on_request_completed)
-	
+	var json_data = JSON.stringify(data)
 	var headers = ["Content-Type: application/json"]
-	http.request("http://localhost:3000/submit", headers, HTTPClient.Method.METHOD_POST, json_data)
+	
+	http_request.request_completed.connect(_on_scores_submitted)
+	var err = http_request.request(firebase_url, headers, HTTPClient.METHOD_POST, json_data)
+	if err != OK:
+		print("Error sending request: ", err)
+
+
+func _on_scores_submitted(_result, response_code, _headers, body):
+	print("Response Code: ", response_code)
+	print("Response Body: ", body.get_string_from_utf8())
 
 
 func _on_request_completed(_result: int, response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:

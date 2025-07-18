@@ -4,51 +4,64 @@ extends Node2D
 @export var game_scene: String
 
 
-@onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/LocalLeaderboardContainer
-@onready var local_leaderboard: Label = $CanvasLayer/LocalLeaderboardContainer/LocalLeaderboard
-# @onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer
-# @onready var local_leaderboard: Label = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer/LocalLeaderboard
+# @onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/LocalLeaderboardContainer
+# @onready var local_leaderboard: Label = $CanvasLayer/LocalLeaderboardContainer/LocalLeaderboard
+@onready var local_leaderboard_container: VBoxContainer = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer
+@onready var local_leaderboard: Label = $CanvasLayer/HBoxContainer/LocalLeaderboardContainer/LocalLeaderboard
 @onready var global_leaderboard: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalLeaderboard
 @onready var global_title: Label = $CanvasLayer/HBoxContainer/OnlineLeaderboardContainer/GlobalTitle
+@onready var http_request: HTTPRequest = $HTTPRequest
 
 
 func _ready() -> void:	
-	# Local Leaderboard Logic
+	get_local_leaderboard()
+	get_global_leaderboard()
+
+
+func get_local_leaderboard():
 	GameManager.load_local_leaderboard()
 	for i in GameManager.leaderboard["scores"].size():
 		var entry = GameManager.leaderboard["scores"][i]
-		local_leaderboard.text += str(i + 1) + ": " + entry["name"] + " - " + str(entry["score"]) + "\n"
-	
-	# Global Leaderboard Logic
-	# TODO: implement online High Score Leaderboard
-	# get_global_leaderboard()
+		local_leaderboard.text += "%d. %s - %d\n" % [i + 1, entry["name"], entry["score"]]
+		# fill global lb with local data until real data is loaded
+		global_leaderboard.text += "%d. %s - %d\n" % [i + 1, entry["name"], entry["score"]]
 
 
 func get_global_leaderboard():
-	print("Retreiving global leaderboard...")
-	var http = HTTPRequest.new()
-	# add request node to scene tree
-	add_child(http)
 	# connect function to run on request completion
-	http.request_completed.connect(_on_scores_received)
+	http_request.request_completed.connect(_on_scores_received)
 	# make the request
-	http.request("http://localhost:3000/scores")
+	http_request.request(GameManager.firebase_url, [], HTTPClient.METHOD_GET)
 
 
-func _on_scores_received(_result, _code, _headers, body):
-	var json = JSON.new()
-	var error = json.parse(body.get_string_from_utf8())
-	
-	if error == OK:
-		var result = json.data
-		print(result)
-		for entry in result:
-			print("%s: %d\n" % [entry["name"], entry["score"]])
-			global_leaderboard.text += "%s: %d\n" % [entry["name"], entry["score"]]
-	else:
-		print("JSON parsing failed with error code: ", error)
+func _on_scores_received(_result, response_code, _headers, body):
+	if response_code != 200:
+		print("Failed to load leaderboard: ", response_code)
 		global_title.visible = false
-		global_leaderboard.text = "Unable to retrieve leaderboard. Please try again later."
+		return
+	var json = JSON.new()
+	var json_response = json.parse(body.get_string_from_utf8())
+	# Ok or 0 returned is a success code
+	if json_response != 0:
+		print("JSON parse error: ", json_response.error_string)
+		global_title.visible = false
+		return
+	
+	var scores = []
+	if json.data != null:
+		for key in json.data:
+			var entry = json.data[key]
+			scores.append(entry)
+	
+	# Sort descending
+	scores.sort_custom(func(a, b): return a["score"] > b["score"])
+	
+	print("🏆 Leaderboard:")
+	global_leaderboard.text = ""
+	for i in range(min(10, scores.size())):
+		var e = scores[i]
+		print("%d. %s - %d" % [i + 1, e.name, e.score])
+		global_leaderboard.text += "%d. %s - %d\n" % [i + 1, e.name, e.score]
 
 
 func _input(event):
