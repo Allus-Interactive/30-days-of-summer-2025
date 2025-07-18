@@ -37,14 +37,14 @@ func get_global_leaderboard():
 
 func _on_scores_received(_result, response_code, _headers, body):
 	if response_code != 200:
-		print("Failed to load leaderboard: ", response_code)
+		# Failed to load leaderboard
 		global_title.visible = false
 		return
 	var json = JSON.new()
 	var json_response = json.parse(body.get_string_from_utf8())
 	# Ok or 0 returned is a success code
 	if json_response != 0:
-		print("JSON parse error: ", json_response.error_string)
+		# Error returning leaderboard
 		global_title.visible = false
 		return
 	
@@ -57,11 +57,9 @@ func _on_scores_received(_result, response_code, _headers, body):
 	# Sort descending
 	scores.sort_custom(func(a, b): return a["score"] > b["score"])
 	
-	print("🏆 Leaderboard:")
 	global_leaderboard.text = ""
 	for i in range(min(10, scores.size())):
 		var e = scores[i]
-		print("%d. %s - %d" % [i + 1, e.name, e.score])
 		# global_leaderboard.text += "%d. %s - %d\n" % [i + 1, e.name, e.score]
 		global_leaderboard.text += "%s%d. %s - %d\n" % [(" " if i < 9 else ""), i + 1, e.name, e.score]
 
