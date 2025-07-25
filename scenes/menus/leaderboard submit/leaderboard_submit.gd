@@ -13,7 +13,7 @@ extends Node2D
 	$CanvasLayer/Letter3
 ]
 
-var alphabet := "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+var alphabet := "ABCDEFGHIJKLMNOPQRSTUVWXYZ ".split("")
 var letters = ["A", "A", "A"]
 var current_index = 0  # which letter is selected
 var player_initials: String
