@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1gnp2gl387aa"]
+[gd_scene load_steps=12 format=3 uid="uid://1gnp2gl387aa"]
 
 [ext_resource type="Script" uid="uid://ce4v211ythoe3" path="res://scenes/menus/title screen/title_screen.gd" id="1_n17qi"]
 [ext_resource type="Texture2D" uid="uid://cbn6omwkhbwwm" path="res://assets/background/title_screen.png" id="2_ptv5j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d304avqfvx4u1" path="res://assets/food/burger/burger_cooked.png" id="5_ssxho"]
 [ext_resource type="Texture2D" uid="uid://cp8v8li15ikfx" path="res://assets/food/sausage/sausage_cooked.png" id="6_30q4t"]
 [ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_jhqb3"]
+[ext_resource type="AudioStream" uid="uid://cvfamprmsfb2y" path="res://assets/sfx/voiceover/grill_master.wav" id="8_2wlbe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugfu2"]
 atlas = ExtResource("3_ptv5j")
@@ -71,3 +72,7 @@ theme = ExtResource("7_jhqb3")
 theme_override_font_sizes/font_size = 110
 text = "Grill Master"
 vertical_alignment = 1
+
+[node name="TitleSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2wlbe")
+volume_db = 10.0

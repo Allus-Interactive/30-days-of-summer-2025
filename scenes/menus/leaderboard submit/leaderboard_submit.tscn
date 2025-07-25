@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmo8iruscdtfh"]
+[gd_scene load_steps=12 format=3 uid="uid://dmo8iruscdtfh"]
 
 [ext_resource type="Script" uid="uid://brmk65llvp3pv" path="res://scenes/menus/leaderboard submit/leaderboard_submit.gd" id="1_lel36"]
 [ext_resource type="Texture2D" uid="uid://cbml52o5ut3n" path="res://assets/background/background.png" id="2_ahi2g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d304avqfvx4u1" path="res://assets/food/burger/burger_cooked.png" id="5_3amk6"]
 [ext_resource type="Texture2D" uid="uid://cp8v8li15ikfx" path="res://assets/food/sausage/sausage_cooked.png" id="6_ek853"]
 [ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_d208j"]
+[ext_resource type="AudioStream" uid="uid://bb8jqc0byymq0" path="res://assets/sfx/voiceover/high_score.wav" id="8_ahi2g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugfu2"]
 atlas = ExtResource("3_vwbb5")
@@ -133,5 +134,8 @@ offset_right = 600.0
 offset_bottom = 518.0
 theme = ExtResource("7_d208j")
 text = "View Leaderboard"
+
+[node name="HighScoreSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ahi2g")
 
 [connection signal="pressed" from="CanvasLayer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
