@@ -24,7 +24,6 @@ var flipped = false
 
 func _ready() -> void:	
 	set_food_to_raw()
-	sizzle_sfx.play()
 	GameManager.flip_the_food.connect(on_flip_food)
 
 
@@ -84,7 +83,6 @@ func on_flip_food(player_position: float) -> void:
 				flip_food_sprite()
 				await get_tree().create_timer(0.2).timeout
 				sprite_2d.texture = food_data.texture_cooked
-				sizzle_sfx.play()
 				flipped = true
 				set_food_to_half_cooked()
 		# check if food is burned
@@ -111,6 +109,7 @@ func flip_food_sprite() -> void:
 
 
 func steam_burst(state: State) -> void:
+	sizzle_sfx.play()
 	if state == State.READY:
 		steam_particles.restart()
 	elif state == State.BURNED:
