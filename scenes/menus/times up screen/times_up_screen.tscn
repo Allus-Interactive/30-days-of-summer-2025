@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://de5ruodr2dnj4"]
+[gd_scene load_steps=3 format=3 uid="uid://de5ruodr2dnj4"]
 
 [ext_resource type="Script" uid="uid://bfxdb27wsglef" path="res://scenes/menus/times up screen/times_up_screen.gd" id="1_yfpcn"]
-[ext_resource type="Texture2D" uid="uid://5r3jypmuby3i" path="res://assets/background/plain_bg.png" id="3_yfpcn"]
 [ext_resource type="Theme" uid="uid://8n7hmf7q53wo" path="res://assets/themes/dynapuff.tres" id="7_xvht3"]
 
 [node name="TimesUpScreen" type="Control"]
@@ -13,10 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yfpcn")
 game_scene = "res://scenes/grill_master.tscn"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(480, 270)
-texture = ExtResource("3_yfpcn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
