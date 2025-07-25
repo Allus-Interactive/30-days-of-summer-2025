@@ -11,7 +11,6 @@ var difficulty_level: Difficulty = Difficulty.medium
 var current_score: int = 0
 var cooking_streak: int = 0
 var is_muted: bool = false
-var food_data_setup: bool = false
 var leaderboard = {
 	"scores": [
 		{"name": "LFC", "score": 200},
