@@ -72,6 +72,7 @@ func add_score(value: int) -> void:
 		score += (diff_score * combo_multiplier)
 		combo_label.visible = true
 		combo_label_timer.start()
+		GameManager.cooking_streak == 0
 	else:
 		score += diff_score
 	score_label.text = "Score: %d" % score
