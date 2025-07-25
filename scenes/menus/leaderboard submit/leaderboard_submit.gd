@@ -6,6 +6,7 @@ extends Node2D
 
 @onready var leaderboard_button: Button = $CanvasLayer/LeaderboardButton
 @onready var info_label: Label = $CanvasLayer/InfoLabel
+@onready var high_score_sfx: AudioStreamPlayer2D = $HighScoreSFX
 @onready var letter_labels = [
 	$CanvasLayer/Letter1,
 	$CanvasLayer/Letter2,
@@ -21,6 +22,7 @@ var player_initials: String
 func _ready() -> void:
 	letter_labels[0].add_theme_color_override("font_color", Color.YELLOW)
 	leaderboard_button.grab_focus()
+	high_score_sfx.play()
 
 
 func _input(event):

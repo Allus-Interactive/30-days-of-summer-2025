@@ -24,6 +24,7 @@ const FOOD_TYPES =[
 @onready var combo_label_timer: Timer = $ComboLabelTimer
 @onready var sizzle_sfx: AudioStreamPlayer2D = $SizzleSFX
 @onready var ticking_sfx: AudioStreamPlayer2D = $TickingSFX
+@onready var tasty_sfx: AudioStreamPlayer2D = $TastySFX
 
 
 var food_scene = preload("res://scenes/food/food.tscn")
@@ -35,8 +36,6 @@ var spawn_rate: float = 1
 func _ready() -> void:
 	add_to_group("game")
 	set_difficulty_multiplier()
-	# reset bool to false top allow food.gd to set up cooking timer
-	GameManager.food_data_setup = false
 	# update timer for difficulty level and start it
 	food_spawn_timer.wait_time = food_spawn_timer.wait_time * spawn_rate
 	food_spawn_timer.start()
@@ -45,11 +44,13 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	# play tick sfx when 10 seconds left on game
 	if time_remaining == 10:
 		ticking_sfx.play()
 
 
 func set_difficulty_multiplier() -> void:
+	# set difficulty multipliers
 	match GameManager.difficulty_level:
 		GameManager.Difficulty.easy:
 			score_multiplier = 0.75
@@ -68,11 +69,11 @@ func set_difficulty_multiplier() -> void:
 func add_score(value: int) -> void:
 	var diff_score = value * score_multiplier
 	if GameManager.cooking_streak == combo_streak:
-		# TODO: add 'Tasty' sfx
+		GameManager.cooking_streak = 0
+		tasty_sfx.play()
 		score += (diff_score * combo_multiplier)
 		combo_label.visible = true
 		combo_label_timer.start()
-		GameManager.cooking_streak == 0
 	else:
 		score += diff_score
 	score_label.text = "Score: %d" % score
